@@ -1,0 +1,8 @@
+node_modules/
+skill-swap-client/node_modules/
+skill-swap-server/node_modules/
+.env
+skill-swap-client/.env
+skill-swap-server/.env
+dist/
+.vscode/
