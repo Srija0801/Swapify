@@ -99,14 +99,14 @@ io.on("connection", (socket) => {
 });
 
 /* ---------- MIDDLEWARE ---------- */
-const allowedOrigins = [
+const allowedOrigin = [
   "http://localhost:5173",
   "https://swapify-gold.vercel.app",
   "https://swapify-4w4vxst8o-srija0801s-projects.vercel.app"
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: allowedOrigin,
   credentials: true
 }));
 
