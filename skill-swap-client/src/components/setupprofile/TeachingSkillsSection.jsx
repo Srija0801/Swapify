@@ -46,19 +46,27 @@ export default function TeachingSkillsSection({
         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"
       />
 
-      {showTeachingDropdown && filteredTeachingSkills.length > 0 && (
-        <div className="border rounded-lg mt-2 max-h-40 overflow-y-auto bg-white shadow">
-          {filteredTeachingSkills.map((skill) => (
-            <div
-              key={skill._id}
-              onClick={() => addTeachingSkill(skill)}
-              className="px-4 py-2 hover:bg-emerald-50 cursor-pointer"
-            >
-              {skill.skill}
-            </div>
-          ))}
+      {showTeachingDropdown && (
+  <div className="border rounded-lg mt-2 max-h-40 overflow-y-auto bg-white shadow">
+    {filteredTeachingSkills.length > 0 ? (
+      filteredTeachingSkills.map((skill) => (
+        <div
+          key={skill._id}
+          onClick={() => addTeachingSkill(skill)}
+          className="px-4 py-2 hover:bg-emerald-50 cursor-pointer"
+        >
+          {skill.skill}
         </div>
-      )}
+      ))
+    ) : (
+      <div className="px-4 py-2 text-sm text-gray-500">
+        {allSkills.length === 0
+          ? "No skills available (check API / database)."
+          : "No matching skills found."}
+      </div>
+    )}
+  </div>
+)}
 
       {teachingSkills.length > 0 && (
         <div className="space-y-3 mt-4">

@@ -29,9 +29,15 @@ export default function SetupProfile() {
   }, []);
 
   const fetchSkills = async () => {
-    const skills = await userApi.getAllSkills();
-    setAllSkills(skills);
-  };
+  try {
+    const res = await userApi.getAllSkills();
+    console.log("getAllSkills response:", res);
+    const list = Array.isArray(res) ? res : res?.skills || [];
+    setAllSkills(list);
+  } catch (err) {
+    console.error("Error loading skills:", err);
+  }
+};
 
   const handleAvatarChange = async (e) => {
     const file = e.target.files[0];

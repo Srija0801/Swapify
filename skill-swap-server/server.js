@@ -1,3 +1,6 @@
+import dns from 'node:dns';
+
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -15,6 +18,8 @@ import User from "./src/models/User.js";
 import adminRoutes from "./src/routes/adminRoutes.js"
 
 dotenv.config();
+console.log("JWT_SECRET =", process.env.JWT_SECRET);
+console.log("MONGO_URI =", process.env.MONGO_URI);
 connectDB();
 
 const app = express();
@@ -112,7 +117,7 @@ app.use((err, req, res, next) => {
 /* ---------- SERVER ---------- */
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () =>
-  console.log(`🚀 Server running on port ${PORT}`)
+  console.log(` Server running on port ${PORT}`)
 );
 
 export default server;
