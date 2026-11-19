@@ -26,9 +26,17 @@ const app = express();
 const server = http.createServer(app);
 
 /* ---------- SOCKET.IO ---------- */
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://swapify-gold.vercel.app",
+  "https://swapify-4w4vxst8o-srija0801s-projects.vercel.app"
+];
+
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
@@ -91,9 +99,15 @@ io.on("connection", (socket) => {
 });
 
 /* ---------- MIDDLEWARE ---------- */
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://swapify-gold.vercel.app",
+  "https://swapify-4w4vxst8o-srija0801s-projects.vercel.app"
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
-  credentials: true,
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 app.use(express.json());
